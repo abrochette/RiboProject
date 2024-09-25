@@ -29,3 +29,5 @@ class Item(models.Model):
 # <QuerySet [<ToDoList: Asha's list>]>
 # >>> ToDoList.objects.get(id=1)
 # <ToDoList: Asha's list>
+# >>> a.filter(name__startswith="Asha")
+# <QuerySet [<ToDoList: Asha's list>, <ToDoList: Asha's List>]>
