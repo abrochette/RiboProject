@@ -1,0 +1,14 @@
+{% extends 'riboApp/base.html' %}
+
+{% block title %} Create New List {% endblock %}
+
+{% block content %}
+  <h1>Ribo App</h1>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">Submit</button>
+  </form>
+
+{% endblock %}
