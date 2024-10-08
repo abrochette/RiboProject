@@ -18,6 +18,15 @@ class Item(models.Model):
     def __str__(self):
         return self.text
 
+class ProcessingInput(models.Model):
+    adapter = models.CharField(max_length=500)
+    mouseGenome = models.BooleanField()
+    humanGenome = models.BooleanField()
+    sampleFile = models.FileField()
+
+    def __str__(self):
+        return self.adapter
+
 
 # adding to database from terminal:
 

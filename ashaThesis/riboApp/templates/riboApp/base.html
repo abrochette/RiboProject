@@ -1,11 +1,53 @@
+<!DOCTYPE html>
 <html>
 
 <head>
   <title>Ribo App</title>
+  <style>
+    /* Top bar styling */
+    .topBar {
+      background-color: #368BC1;
+      overflow: hidden;
+      display: flex;
+    }
+
+    /* Style the links inside the top bar */
+    .topBar a {
+      color: white;
+      padding: 14px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+    }
+
+    /* Change link color on hover */
+    .topBar a:hover {
+      background-color: #87AFC7;
+      color: white;
+    }
+
+    /* Active page styling */
+    .topBar a.active {
+      background-color: #87AFC7;
+      color: white;
+    }
+
+    /* Optional: Style the content area */
+    #content {
+      padding: 20px;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="content", name="content">
+  <div class="topBar">
+    <a href="/home" class="active">Home</a>
+    <a href="/create">Pre-Processing</a>
+    <a href="/analyze">Analyze</a>
+    <a href="/pSiteLocation">Locate P Sites</a>
+  </div>
+
+  <div id="content" name="content">
     {% block content %}
     {% endblock %}
   </div>

@@ -1,22 +1,30 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from .models import ToDoList, Item
+from django.http import HttpResponse, HttpResponseRedirect
+from .models import ProcessingInput
 from .forms import CreateNewList
 
-# Create your views here.
-
-def index(response, id):
-    #can make a dictionary here like my_dict={}
-    # then in the render command put {"name":ls.name}
-    ls = ToDoList.objects.get(id=id)
-    return render(response, "riboApp/base.html", {})
-
-def view1(response):
-    return HttpResponse("<h1>Another cool page :)</h1>")
-
-def home(response):
-    return render(response, "riboApp/home.html", {})
 
 def create(response):
-    form = CreateNewList()
+    if response.method == "POST":
+        form = CreateNewList(response.POST,
+                             response.FILES)
+        if form.is_valid():
+            adapter = form.cleaned_data["adapter"]
+            sampleFile = form.cleaned_data["sampleFile"]
+            humanGenome = form.cleaned_data["humanGenome"]
+            mouseGenome = form.cleaned_data["mouseGenome"]
+
+            userInput = ProcessingInput.objects.create(
+                adapter=adapter,
+                sampleFile=sampleFile,
+                humanGenome=humanGenome,
+                mouseGenome=mouseGenome
+            )
+
+            return render(response, "riboApp/create.html",
+                          {"form": form, "userInput": userInput})
+
+    else:
+        form = CreateNewList()
+
     return render(response, "riboApp/create.html", {"form": form})
