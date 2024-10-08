@@ -1,0 +1,23 @@
+{% extends 'riboApp/base.html' %}
+
+{% block title %} Create New List {% endblock %}
+
+{% block content %}
+  <h1>Ribo App - Pre-Processing</h1>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
+
+
+  {% if userInput %}
+    <h2>Submitted Data</h2>
+    <p><strong>Adapter Sequence:</strong> {{ userInput.adapter }}</p>
+    <p><strong>Sample File:</strong> <a href="{{ userInput.sampleFile.url }}">Download</a></p>
+    <p><strong>Mouse Genome (mouseGenome):</strong> {{ userInput.mouseGenome|yesno:"Yes,No" }}</p>
+    <p><strong>Human Genome (humanGenome):</strong> {{ userInput.humanGenome|yesno:"Yes,No" }}</p>
+  {% endif %}
+
+{% endblock %}
