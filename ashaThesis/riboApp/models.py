@@ -19,10 +19,11 @@ class Item(models.Model):
         return self.text
 
 class ProcessingInput(models.Model):
+    experimentName = models.CharField(max_length=200)
     adapter = models.CharField(max_length=500)
     mouseGenome = models.BooleanField()
     humanGenome = models.BooleanField()
-    sampleFile = models.FileField()
+    sampleFile = models.FileField(upload_to='uploads/')
 
     def __str__(self):
         return self.adapter
