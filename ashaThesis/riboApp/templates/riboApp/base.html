@@ -4,14 +4,14 @@
 <head>
   <title>Ribo App</title>
   <style>
-    /* Top bar styling */
+    /* top bar */
     .topBar {
       background-color: #368BC1;
       overflow: hidden;
       display: flex;
     }
 
-    /* Style the links inside the top bar */
+    /* text inside top bar */
     .topBar a {
       color: white;
       padding: 14px 20px;
@@ -20,19 +20,17 @@
       display: block;
     }
 
-    /* Change link color on hover */
+    /* change color when hovering */
     .topBar a:hover {
       background-color: #87AFC7;
       color: white;
     }
 
-    /* Active page styling */
     .topBar a.active {
       background-color: #87AFC7;
       color: white;
     }
 
-    /* Optional: Style the content area */
     #content {
       padding: 20px;
     }
@@ -41,10 +39,10 @@
 
 <body>
   <div class="topBar">
-    <a href="/home" class="active">Home</a>
-    <a href="/create">Pre-Processing</a>
-    <a href="/analyze">Analyze</a>
-    <a href="/pSiteLocation">Locate P Sites</a>
+    <a href="/home" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+    <a href="/preprocess" class="{% if request.resolver_match.url_name == 'preprocess' %}active{% endif %}">Pre-Processing</a>
+    <a href="/analyze" class="{% if request.resolver_match.url_name == 'analyze' %}active{% endif %}">Analyze</a>
+    <a href="/locatepsites" class="{% if request.resolver_match.url_name == 'pSiteLocation' %}active{% endif %}">Locate P Sites</a>
   </div>
 
   <div id="content" name="content">

@@ -6,7 +6,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("create/", views.create, name="create"),
+    path('home/', views.home, name = "home"),
+    path("preprocess/", views.preProcess, name="preprocess"),
+    path("analyze/", views.analyze, name="analyze"),
+    path("locatepsites/", views.locatePsites, name="locatepsites"),
     path('download/<str:file_name>/', views.download_file, name='download_file')
 ]
 
